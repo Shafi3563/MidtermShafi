@@ -60,14 +60,58 @@ Why main is static?
 This is neccesary because main() is called by the JVM before any objects are made. Since it is static it can be directly invoked via the class. Similarly, we use static sometime for user defined methods so that we need not to make objects. void indicates that the main() method being declared does not return a value.
 
 Which class is the superclass of all classes?
+
+Object is a super class of any class by default. The root class of the Java class hierarchy. All non-primitive types (including arrays) inherit either directly or indirectly from this class. Object is the super class of all other classes you use, including the ones you implemented.
+
 What is difference between path and classpath variables?
+
+Path is a mediator between developer and operating system to inform binary file path where as Classpath is a mediator between developer and compiler to inform the library file path those are used in our source code
+
 What is the difference between an Interface and Abstract class?
+
+Main difference is methods of a Java interface are implicitly abstract and cannot have implementations. A Java abstract class can have instance methods that implements a default behavior.
+Variables declared in a Java interface is by default final. An  abstract class may contain non-final variables.
+Members of a Java interface are public by default. A Java abstract class can have the usual flavors of class members like private, protected, etc..
+Java interface should be implemented using keyword “implements”; A Java abstract class should be extended using keyword “extends”.
+An interface can extend another Java interface only, an abstract class can extend another Java class and implement multiple Java interfaces.
+A Java class can implement multiple interfaces but it can extend only one abstract class.
+Interface is absolutely abstract and cannot be instantiated; A Java abstract class also cannot be instantiated, but can be invoked if a main() exists.
+In comparison with java abstract classes, java interfaces are slow as it requires extra indirection.
 Can you make an Object from an Interface and Abstract class ? if not how do you use it ?
+
 what is Access Specifier?
+
+Access specifiers for classes or interfaces in Java. But, the classes and interfaces themselves can have only two access specifiers when declared outside an
+y other class. 1) public. 2) default (when no access specifier is specified) We cannot declare class/interface with private or protected access specifiers.
+
 What is OOP ? Define each feature of java OOP.
+
+OOP concepts in Java are the main ideas behind Java’s Object Oriented Programming. They are an abstraction, encapsulation, inheritance, and polymorphism. Grasping them is key to understanding how Java works. Basically, Java OOP concepts let us create working methods and variables, then re-use all or part of them without compromising security.
+
+List of OOP Concepts in Java
+There are four main OOP concepts in Java. These are:
+
+Abstraction. Abstraction means using simple things to represent complexity. We all know how to turn the TV on, but we don’t need to know how it works in order to enjoy it. In Java, abstraction means simple things like objects, classes, and variables represent more complex underlying code and data. This is important because it lets avoid repeating the same work multiple times.
+Encapsulation. This is the practice of keeping fields within a class private, then providing access to them via public methods. It’s a protective barrier that keeps the data and code safe within the class itself. This way, we can re-use objects like code components or variables without allowing open access to the data system-wide.
+Inheritance. This is a special feature of Object Oriented Programming in Java. It lets programmers create new classes that share some of the attributes of existing classes. This lets us build on previous work without reinventing the wheel.
+Polymorphism. This Java OOP concept lets programmers use the same word to mean different things in different contexts. One form of polymorphism in Java is method overloading. That’s when different meanings are implied by the code itself. The other form is method overriding. That’s when the different meanings are implied by the values of the supplied variables. See more on this below.
+
 What is Java Package and which package is imported by default?
+
+If you omit the package statement while writing the class definition, the class name is placed into the default package, which has no name. Java compiler automatically imports this package. Second, the java.lang package is imported implicitly.
+
+A Java package organizes Java classes into namespaces, providing a unique namespace for each type it contains. Classes in the same package can access each other's package-private and protected members.
+
 What is API? Name list of API that you have used so far.
+
+In computer programming, an application programming interface is a set of subroutine definitions, communication protocols, and tools for building software. In general terms, it is a set of clearly defined methods of communication among various components.
+Amazon, facebook, twittwer etc.
+
 Does java support multiple inheritance, explain why or why not?
+
+To avoid ambiguity error java does not support multiple inheritance through class. But through the interface, multiple inheritance is possible in java. No java doesn't support multiple inheritance directly because it leads to overiding of methods when both extended class have a same method name.
+
+
 What is method overloading and when it happens?
 Explain exceptions in java and how to handle it.
 What is static keyword in java? How it has been used in variables and methods ?
