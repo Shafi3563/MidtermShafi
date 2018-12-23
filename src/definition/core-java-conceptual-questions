@@ -9,8 +9,11 @@ A.
 What are the IDEs available in the market to support java?
 Explain the entire java life cycle.
 what is class?
+Class is blueprint of an object.
 What is object?
+Object is instance of a class.
 What is the entry point of an application?
+Method (main).
 Why main is static?
 Which class is the superclass of all classes?
 What is difference between path and classpath variables?
