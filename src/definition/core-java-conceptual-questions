@@ -98,6 +98,20 @@ Polymorphism. This Java OOP concept lets programmers use the same word to mean d
 
 What is Java Package and which package is imported by default?
 
+Package in Java is a mechanism to encapsulate a group of classes, sub packages and interfaces. Packages are used for:
+
+Preventing naming conflicts. For example there can be two classes with name Employee in two packages, college.staff.cse.Employee and college.staff.ee.Employee
+Making searching/locating and usage of classes, interfaces, enumerations and annotations easier
+Providing controlled access: protected and default have package level access control. A protected member is accessible by classes in the same package and its subclasses. A default member (without any access specifier) is accessible by classes in the same package only.
+Packages can be considered as data encapsulation (or data-hiding).
+All we need to do is put related classes into packages. After that we can simply write a import a class from existing packages and use it in our program. A packages is container of group of related classes where some of the classes are accessible are exposed and others are kept for internal purpose.
+We can reuse existing classes from the packages as many time as we need it in our program.
+
+How packages work:
+
+Package names and directory structure are closely related. For example if a package name is college.staff.cse, then there are three directories, college, staff and cse such that cse is present in staff and staff is present college. Also, the directory college is accessible through CLASSPATH variable, i.e., path of parent directory of college is present in CLASSPATH. The idea is to make sure that classes are easy to locate.
+Package naming conventions : Packages are named in reverse order of domain names, i.e., org.geeksforgeeks.practice. For example, in a college, the recommended convention is college.tech.cse, college.tech.ee, college.art.history, etc.
+
 If you omit the package statement while writing the class definition, the class name is placed into the default package, which has no name. Java compiler automatically imports this package. Second, the java.lang package is imported implicitly.
 
 A Java package organizes Java classes into namespaces, providing a unique namespace for each type it contains. Classes in the same package can access each other's package-private and protected members.
@@ -113,16 +127,279 @@ To avoid ambiguity error java does not support multiple inheritance through clas
 
 
 What is method overloading and when it happens?
+
+Method Overloading is a feature that allows a class to have more than one method having the same name, if their argument lists are different. It is similar to constructor overloading in Java, that allows a class to have more than one constructor having different argument lists.
+
+let’s get back to the point, when I say argument list it means the parameters that a method has: For example the argument list of a method add(int a, int b) having two parameters is different from the argument list of the method add(int a, int b, int c) having three parameters.
+
+Three ways to overload a method
+In order to overload a method, the argument lists of the methods must differ in either of these:
+1. Number of parameters.
+For example: This is a valid case of overloading
+
+add(int, int)
+add(int, int, int)
+2. Data type of parameters.
+For example:
+
+
+add(int, int)
+add(int, float)
+3. Sequence of Data type of parameters.
+For example:
+
+add(int, float)
+add(float, int)
+
 Explain exceptions in java and how to handle it.
+
+An exception is an unwanted or unexpected event, which occurs during the execution of a program i.e at run time, that disrupts the normal flow of the program’s instructions.
+
+How JVM handle an Exception?
+
+Default Exception Handling : Whenever inside a method, if an exception has occurred, the method creates an Object known as Exception Object and hands it off to the run-time system(JVM). The exception object contains name and description of the exception, and current state of the program where exception has occurred. Creating the Exception Object and handling it to the run-time system is called throwing an Exception.There might be the list of the methods that had been called to get to the method where exception was occurred. This ordered list of the methods is called Call Stack.Now the following procedure will happen.
+
+The run-time system searches the call stack to find the method that contains block of code that can handle the occurred exception. The block of the code is called Exception handler.
+The run-time system starts searching from the method in which exception occurred, proceeds through call stack in the reverse order in which methods were called.
+If it finds  appropriate handler then it passes the occurred exception to it. Appropriate handler means the type of the exception object thrown matches the type of the exception object it can handle.
+If run-time system searches all the methods on call stack and couldn’t have found the appropriate handler then run-time system handover the Exception Object to default exception handler , which is part of run-time system. This handler prints the exception information in the following format and terminates program abnormally.
+
+Exception in thread "xxx" Name of Exception : Description
+... ...... ..  // Call Stack
+
 What is static keyword in java? How it has been used in variables and methods ?
+
+Java static keyword
+Static variable
+Program of the counter without static variable
+Program of the counter with static variable
+Static method
+Restrictions for the static method
+Why is the main method static?
+Static block
+Can we execute a program without main method?
+The static keyword in Java is used for memory management mainly. We can apply java static keyword with variables, methods, blocks and nested class. The static keyword belongs to the class than an instance of the class.
+
+The static can be:
+
+Variable (also known as a class variable)
+Method (also known as a class method)
+Block
+Nested class
+Static in Java
+1) Java static variable
+If you declare any variable as static, it is known as a static variable.
+
+The static variable can be used to refer to the common property of all objects (which is not unique for each object), for example, the company name of employees, college name of students, etc.
+The static variable gets memory only once in the class area at the time of class loading.
+Advantages of static variable
+It makes your program memory efficient (i.e., it saves memory).
+
+Understanding the problem without static variable
+class Student{
+     int rollno;
+     String name;
+     String college="ITS";
+}
+Suppose there are 500 students in my college, now all instance data members will get memory each time when the object is created. All students have its unique rollno and name, so instance data member is good in such case. Here, "college" refers to the common property of all objects. If we make it static, this field will get the memory only once.
+
+Java static property is shared to all objects.
+Example of static variable
+//Java Program to demonstrate the use of static variable
+class Student{
+   int rollno;//instance variable
+   String name;
+   static String college ="ITS";//static variable
+   //constructor
+   Student(int r, String n){
+   rollno = r;
+   name = n;
+   }
+   //method to display the values
+   void display (){System.out.println(rollno+" "+name+" "+college);}
+}
+//Test class to show the values of objects
+public class TestStaticVariable1{
+ public static void main(String args[]){
+ Student s1 = new Student(111,"Karan");
+ Student s2 = new Student(222,"Aryan");
+ //we can change the college of all objects by the single line of code
+ //Student.college="BBDIT";
+ s1.display();
+ s2.display();
+ }
+}
+Test it Now
+Output:
+
+111 Karan ITS
+222 Aryan ITS
+Static Variable
+
+
+Program of the counter without static variable
+In this example, we have created an instance variable named count which is incremented in the constructor. Since instance variable gets the memory at the time of object creation, each object will have the copy of the instance variable. If it is incremented, it won't reflect other objects. So each object will have the value 1 in the count variable.
+
+//Java Program to demonstrate the use of an instance variable
+//which get memory each time when we create an object of the class.
+class Counter{
+int count=0;//will get memory each time when the instance is created
+
+Counter(){
+count++;//incrementing value
+System.out.println(count);
+}
+
+public static void main(String args[]){
+//Creating objects
+Counter c1=new Counter();
+Counter c2=new Counter();
+Counter c3=new Counter();
+}
+}
+Test it Now
+Output:
+
+1
+1
+1
+Program of counter by static variable
+As we have mentioned above, static variable will get the memory only once, if any object changes the value of the static variable, it will retain its value.
+
+//Java Program to illustrate the use of static variable which
+//is shared with all objects.
+class Counter2{
+static int count=0;//will get memory only once and retain its value
+
+Counter2(){
+count++;//incrementing the value of static variable
+System.out.println(count);
+}
+
+public static void main(String args[]){
+//creating objects
+Counter2 c1=new Counter2();
+Counter2 c2=new Counter2();
+Counter2 c3=new Counter2();
+}
+}
+Test it Now
+Output:
+
+1
+2
+3
+2) Java static method
+If you apply static keyword with any method, it is known as static method.
+
+A static method belongs to the class rather than the object of a class.
+A static method can be invoked without the need for creating an instance of a class.
+A static method can access static data member and can change the value of it.
+Example of static method
+//Java Program to demonstrate the use of a static method.
+class Student{
+     int rollno;
+     String name;
+     static String college = "ITS";
+     //static method to change the value of static variable
+     static void change(){
+     college = "BBDIT";
+     }
+     //constructor to initialize the variable
+     Student(int r, String n){
+     rollno = r;
+     name = n;
+     }
+     //method to display values
+     void display(){System.out.println(rollno+" "+name+" "+college);}
+}
+//Test class to create and display the values of object
+public class TestStaticMethod{
+    public static void main(String args[]){
+    Student.change();//calling change method
+    //creating objects
+    Student s1 = new Student(111,"Karan");
+    Student s2 = new Student(222,"Aryan");
+    Student s3 = new Student(333,"Sonoo");
+    //calling display method
+    s1.display();
+    s2.display();
+    s3.display();
+    }
+}
+Test it Now
+Output:111 Karan BBDIT
+       222 Aryan BBDIT
+       333 Sonoo BBDIT
+Another example of a static method that performs a normal calculation
+//Java Program to get the cube of a given number using the static method
+
+class Calculate{
+  static int cube(int x){
+  return x*x*x;
+  }
+
+  public static void main(String args[]){
+  int result=Calculate.cube(5);
+  System.out.println(result);
+  }
+}
+Test it Now
+Output:125
+Restrictions for the static method
+There are two main restrictions for the static method. They are:
+
+The static method can not use non static data member or call non-static method directly.
+this and super cannot be used in static context.
+class A{
+ int a=40;//non static
+
+ public static void main(String args[]){
+  System.out.println(a);
+ }
+}
+Test it Now
+Output:Compile Time Error
+So, Java main method is static  because the object is not required to call a static method. If it were a non-static method, JVM creates an object first then call main() method that will lead the problem of extra memory allocation.
+
 What is final and how it has been used variables and methods?
+
+Final keyword in java is used in different contexts. First of all, final is a non-access modifier applicable only to a variable, a method or a class.Following are different contexts where final is used. When a variable is declared with final keyword, its value can't be modified, essentially, a constant.
+
+
 What is final, finally and finalize?
+
+Final class can't be inherited, final method can't be overridden and final variable value can't be changed. Finally is used to place important code, it will be executed whether exception is handled or not. Finalize is used to perform clean up processing just before object is garbage collected. 2) Final is a keyword.
+
 What is a constructor ?
+
+A constructor in Java is a block of code similar to a method that's called when an instance of an object is created. Here are the key differences between a constructor and a method: A constructor doesn't have a return type. ... Unlike methods, constructors are not considered members of a class.
+
 Can we have multiple constructors in a class?
+
+A class can have multiple constructors, as long as their signature (the parameters they take) are not the same. You can define as many constructors as you need. When a Java class contains multiple constructors, we say that the constructor is overloaded (comes in multiple versions).
+
 If we don't have a constructor declared, what is called during the object creation?
+
+Memory is allocated for the object.
+Various constructors are executed (always from the top of the hierarchy down to the most specific one, e.g., Object's constructor is executed first, then whatever other super-classes you have, then the actual class's).
+So the object already has memory for it, and it's being initialized by the constructors, not created. The constructors are simply setting up the state of the object.
+The object is unusable until the constructors are finished executing.
+Point 4 actually isn't entirely true, because you can leak a reference to the object via passing this to another method within the constructor, but that's a bit of a fringe case. It's kind of a fascinating phenomenon, because you can access things like final variables before they're initialized and retrieve two different values from them, depending on where in the execution they are.
+
+Addressing the comments below: the constructor itself doesn't return anything. It has a void return type. How the variable actually receives the object isn't as straightforward as you might think, and it's a really good question. You can read very detailed answers about this subject on the following Stack Overflow answers, which do a much better and thorough job than I could replicate here.
+
 What is "this" keyword in java ?
-What is "super" keyword in java? How many possible way can you use?
+
+Keyword THIS is a reference variable in Java that refers to the current object. ... It can be used to refer instance variable of current class. It can be used to invoke or initiate current class constructor. It can be passed as an argument in the method call.
+
+
+It is used inside a sub-class method definition to call a method defined in the super class. Private methods of the super-class cannot be called. Only public and protected methods can be called by the super keyword. It is also used by class constructors to invoke constructors of its parent class.
+
 What is JVM stand for ?
+
+Java Virtual Machine.
+
 Is JVM platform independent?
 What version of java are you using?
 What is JAR stand for ?
