@@ -19,6 +19,7 @@ What is IDE?
 A. An integrated development environment (IDE) is a software application that provides comprehensive facilities to computer programmers for software development. An IDE normally consists of a source code editor, build automation tools, and a debugger.
 
 What are the IDEs available in the market to support java?
+
 NetBeans. Once owned by Sun Microsystems, and now by Oracle, NetBeans is one of the best IDEs from the past decade. ...
 IntelliJ IDEA. IntelliJ is a closed source Java IDE, and one of the 'big three' among Java IDEs (The other two being Eclipse and NetBeans). ...
 Eclipse
@@ -387,52 +388,291 @@ So the object already has memory for it, and it's being initialized by the const
 The object is unusable until the constructors are finished executing.
 Point 4 actually isn't entirely true, because you can leak a reference to the object via passing this to another method within the constructor, but that's a bit of a fringe case. It's kind of a fascinating phenomenon, because you can access things like final variables before they're initialized and retrieve two different values from them, depending on where in the execution they are.
 
-Addressing the comments below: the constructor itself doesn't return anything. It has a void return type. How the variable actually receives the object isn't as straightforward as you might think, and it's a really good question. You can read very detailed answers about this subject on the following Stack Overflow answers, which do a much better and thorough job than I could replicate here.
-
 What is "this" keyword in java ?
 
 Keyword THIS is a reference variable in Java that refers to the current object. ... It can be used to refer instance variable of current class. It can be used to invoke or initiate current class constructor. It can be passed as an argument in the method call.
-
-
-It is used inside a sub-class method definition to call a method defined in the super class. Private methods of the super-class cannot be called. Only public and protected methods can be called by the super keyword. It is also used by class constructors to invoke constructors of its parent class.
 
 What is JVM stand for ?
 
 Java Virtual Machine.
 
 Is JVM platform independent?
+
+No. The JVM must be platform dependent to allow your Java to run on the specific platform. A JVM for Windows will translate your Java into different system calls than a JVM for OS X. No, JVMs are not platform independent. In fact they are platform specific run time environment provided by the vendor.
+
 What version of java are you using?
+
+java version "10.0.2" 2018-07-17
+
 What is JAR stand for ?
+
+A JAR (Java ARchive) is a package file format typically used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution.
+
 What is the difference between JDK and JVM?
+
+JVM is Java Virtual Machine, the JVM actually runs Java bytecode. JDK is Java Developer Kit, the JDK is what you need to compile Java source code. JRE is Java Runtime Environment, is what you need to run a Java program and contains a JVM, among other things. JVM (Java Virtual Machine) is an abstract machine.
+
 What is the difference between JVM and JRE?
+
+JRE is an acronym for Java Runtime Environment.It is used to provide runtime environment.It is the implementation of JVM.It physically exists.It contains set of libraries + other files that JVM uses at runtime. JDK is an acronym for Java Development Kit.It physically exists.It contains JRE + development tools.
+
 What is compile time and run time?
+
+The source code must be compiled into machine code in order to become and executable program. This compilation process is referred to as compile time. A compiled program can be opened and run by a user. When an application is running, it is called runtime.
+
 What is heap?
+
+The Java virtual machine has a heap that is shared among all Java virtual machine threads. The heap is the runtime data area from which memory for all class instances and arrays is allocated.
+
 How java manage it's memory?
+
+The JVM loads the code, verifies the code, executes the code, manages memory (this includes allocating memory from the Operating System (OS), managing Java allocation including heap compaction and removal of garbage objects) and finally provides the runtime environment.
+
 What is the difference between String, StringBuffer and StringBuilder?
+
+Difference Between String , StringBuilder And StringBuffer Classes
+
+String
+
+String is immutable ( once created can not be changed )object . The object created as a
+String is stored in the Constant String Pool.
+Every immutable object in Java is thread safe ,that implies String is also thread safe . String
+can not be used by two threads simultaneously.
+String once assigned can not be changed.
+
+StringBuffer
+
+StringBuffer is mutable means one can change the value of the object . The object created
+through StringBuffer is stored in the heap. StringBuffer has the same methods as the
+StringBuilder , but each method in StringBuffer is synchronized that is StringBuffer is thread
+safe .
+Due to this it does not allow two threads to simultaneously access the same method . Each
+method can be accessed by one thread at a time .
+But being thread safe has disadvantages too as the performance of the StringBuffer hits due
+to thread safe property . Thus StringBuilder is faster than the StringBuffer when calling the
+same methods of each class.
+String Buffer can be converted to the string by using
+toString() method.
+StringBuffer demo1 = new StringBuffer("Hello") ;
+// The above object stored in heap and its value can be changed .
+demo1=new StringBuffer("Bye");
+// Above statement is right as it modifies the value which is allowed in the StringBuffer
+
+StringBuilder
+
+StringBuilder is same as the StringBuffer , that is it stores the object in heap and it can also
+be modified . The main difference between the StringBuffer and StringBuilder is
+that StringBuilder is also not thread safe.
+StringBuilder is fast as it is not thread safe .
+StringBuilder demo2= new StringBuilder("Hello");
+// The above object too is stored in the heap and its value can be modified
+demo2=new StringBuilder("Bye");
+// Above statement is right as it modifies the value which is allowed in the StringBuilder
+
 What is Singleton class?
+
+In object-oriented programming, a singleton class is a class that can have only one object (an instance of the class) at a time.
+After first time, if we try to instantiate the Singleton class, the new variable also points to the first instance created. So whatever modifications we do to any variable inside the class through any instance, it affects the variable of the single instance created and is visible if we access that variable through any variable of that class type defined.
+To design a singleton class:
+
+Make constructor as private.
+Write a static method that has return type object of this singleton class. Here, the concept of Lazy initialization in used to write this static method.
+Normal class vs Singleton class: Difference in normal and singleton class in terms of instantiation is that, For normal class we use constructor, whereas for singleton class we use getInstance() method
+
 What is Serialization and Deserialization?
+
+Serialization is a mechanism of converting the state of an object into a byte stream. Deserialization is the reverse process where the byte stream is used to recreate the actual Java object in memory. This mechanism is used to persist the object.
+
+Advantages of Serialization
+1. To save/persist state of an object.
+2. To travel an object across a network.
+
+Only the objects of those classes can be serialized which are implementing java.io.Serializable interface.
+Serializable is a marker interface (has no data member and method). It is used to “mark” java classes so that objects of these classes may get certain capability. Other examples of marker interfaces are:- Cloneable and Remote.
+
+Points to remember
+1. If a parent class has implemented Serializable interface then child class doesn’t need to implement it but vice-versa is not true.
+2. Only non-static data members are saved via Serialization process.
+3. Static data members and transient data members are not saved via Serialization process.So, if you don’t want to save value of a non-static data member then make it transient.
+4. Constructor of object is never called when an object is deserialized.
+5. Associated objects must be implementing Serializable interface.
+
 when to use transient variable in java?
+
+The Java transient keyword is used on class attributes/variables to indicate that serialization process of such class should ignore such variables while creating a persistent byte stream for any instance of that class. A transient variable is a variable that can not be serialized.
+
 Difference between while and do..while loop?
+
+In Java While loop, condition is tested at the beginning of the loop and if the condition is True then only statements in that loop will be executed. ... In Java Do While loop, condition is tested at the end of the loop so Do While executes the statements in the code block at least once even if the condition Fails.
+
 What is Enum?
+
+Enumerations serve the purpose of representing a group of named constants in a programming language. For example the 4 suits in a deck of playing cards may be 4 enumerators named Club, Diamond, Heart, and Spade, belonging to an enumerated type named Suit. Other examples include natural enumerated types (like the planets, days of the week, colors, directions, etc.).
+Enums are used when we know all possible values at compile time, such as choices on a menu, rounding modes, command line flags, etc. It is not necessary that the set of constants in an enum type stay fixed for all time.
+
 What is Iterator?
+
+In computer programming, an iterator is an object that enables a programmer to traverse a container, particularly lists.[1][2][3] Various types of iterators are often provided via a container's interface. Though the interface and semantics of a given iterator are fixed, iterators are often implemented in terms of the structures underlying a container implementation and are often tightly coupled to the container to enable the operational semantics of the iterator. An iterator performs traversal and also gives access to data elements in a container, but does not itself perform iteration (i.e., not without some significant liberty taken with that concept or with trivial use of the terminology). An iterator is behaviorally similar to a database cursor. Iterators date to the CLU programming language in 1974.
+Iterator takes the place of Enumeration in the Java collections framework. Iterators differ from Enumerations in two ways: Iterators allow the caller to remove elements from the underlying collection during the iteration with well-defined semantics.
+
 Which one will take more memory, an int or Integer?
-Why is String Immutable in Java?
+
+To understand it correctly, we need to understand difference between int and integer. The following are the differences: - Integer is a wrapper class, where as int is a primitive data type. - Integer can be used as an argument to a method which requires an object, where as int can be used as an argument to a method which requires an integer value, that can be used for arithmetic expression.
+An integer, which is arbitrarily large. An int is bounded by the definition of your language, or hardware environment and therefore guaranteed to be less than “arbitrarily large”.
+
 What is constructor chaining in Java?
+
+Constructor chaining is the process of calling one constructor from another constructor with respect to current object. Constructor chaining can be done in two ways: Within same class: It can be done using this() keyword for constructors in same class.
+
 The difference between Serial and Parallel Garbage Collector?
+
+both the serial and parallel collectors cause a stop-the-world during the GC. a serial collector is a default copying collector which uses only one GC thread for the GC operation, while a parallel collector uses multiple GC threads for the GC operation.
+
 What is JIT stands for?
+
+JIT stands for Just In time compilation and JVM stands for Java Virtual Machine. JVM is a virtual machine used in Java programming platform to execute or run Java programs. Main advantage of JVM is that, it makes Java platform independent by executing byte codes.
+The JIT compilation is essentially a process that improves the performance of our Java applications at run time. The process below illustrates the different JVM layers and interaction. It describes the following high level process:
+1.	Java source files are compiled by the Java compiler into platform independent bytecode or Java class files.
+2.	After your fire your Java application, the JVM loads the compiled classes at run time and execute the proper computation semantic via the Java interpreter.
+3.	When JIT is enabled, the JVM will analyze the Java application method calls and compile the bytecode (after some internal thresholds are reached) into native, more efficient, machine code. The JIT process is normally prioritized by the busiest method calls first.
+4.	Once such method call is compiled into machine code, the JVM executes it directly instead of “interpreting” it.
+5.	The above process leads to improved run time performance over time.
+
 Explain Java Heap space and Garbage collection?
+
+During the garbage collection objects that are no longer used are cleared, thus making space for new objects. Note that the JVM uses more memory than just the heap. For example Java methods, thread stacks and native handles are allocated in memory separate from the heap, as well as JVM internal data structures.
+
 Can you guarantee the garbage collection process?
+
+Garbage collection works by employing several GC algorithm e.g. Mark and Sweep. ... 2) Garbage collection is a mechanism provided by Java Virtual Machine to reclaim heap space from objects which are eligible for Garbage collection.
+System.gc() and Runtime.gc() are hooks to request the JVM to initiate the garbage collection process. ... It can choose to reject the request and so it is not guaranteed that these calls will do the garbage collection. This decision is taken by the JVM based on the eden space availability in heap memory.
+Garbage collection does not guarantee that a program will not run out of memory. It is possible for programs to use up memory resources faster than they are garbage collected. It is also possible for programs to create objects that are not subject to garbage collection.
+
 What is the difference between stack and heap in Java?
+
+Stack memory only contains local primitive variables and reference variables to objects in heap space. Objects stored in the heap are globally accessible whereas stack memory can't be accessed by other threads. ... Because of simplicity in memory allocation (LIFO), stack memory is very fast when compared to heap memory.
+Heap memory is used by all the parts of the application whereas stack memory is used only by one thread of execution. Whenever an object is created, it's always stored in the Heap space and stack memory contains the reference to it.
+
 What is reflection in java and why is it useful?
+
+Reflection in Java is the ability to examine and/or modify the properties or behavior of an object at run-time. Reflection makes it possible to inspect classes, fields and methods at runtime, without knowing the names of the classes, methods etc. at compile time.
+Reflection is a process of exploring and examining ourselves, our perspectives, attributes, experiences and actions / interactions. It helps us gain insight and see how to move forward. Reflection is often done as writing, possibly because this allows us to probe our reflections and develop them more thoughtfully.
+
 what is multithreading in java?
+
+The main purpose of multithreading is to provide simultaneous execution of two or more parts of a program to maximum utilize the CPU time. A multithreaded program contains two or more parts that can run concurrently. ... RUNNABLE – A thread executing in the Java virtual machine is in this state.
+Multithreading is a Java feature that allows concurrent execution of two or more parts of a program for maximum utilization of CPU. Each part of such program is called a thread. So, threads are light-weight processes within a process. ... This class overrides the run() method available in the Thread class.
+
 What is the use of synchronization in Java?
+
+Synchronized keyword in Java is used to provide mutually exclusive access to a shared resource with multiple threads in Java. Synchronization in Java guarantees that no two threads can execute a synchronized method which requires the same lock simultaneously or concurrently.
+So there is a need to synchronize the action of multiple threads and make sure that only one thread can access the resource at a given point in time. This is implemented using a concept called monitors. Each object in Java is associated with a monitor, which a thread can lock or unlock.
+
 What is Framework?
+
+Frameworks are large bodies (usually many classes) of prewritten code to which you add your own code to solve a problem in a specific domain. ... You make use of a framework by calling its methods, inheritance, and supplying "callbacks", listeners, or other implementations of the Observer pattern. Constrast to library.
+
 What are the testing Framework available in java?
+
+Testing tools for Java
+Here are top ‘8 tools to help you with Java testing (& Frameworks)’.
+
+1. Arquillian
+Arquillian is a highly innovative and extendible testing platform for JVM that allows developers to easily create automated integration, functional and acceptance tests for Java. Arquillian allows you to run test in the run-time so you don’t have to manage the run-time from the test (or the build). Arquillian can be used to manage the life cycle of the container (or containers),bundling test cases, dependent classes and resources. It is also capable of deploying archive into containers and execute tests in the containers and capture results and create reports.
+
+Arquillian integrates with familiar testing frameworks such as JUnit 4, TestNG 5 and allows tests to be launched using existing IDE, and because of its modular design it is capable of running Ant and Maven test plugins. You can find out more on their website.
+
+2. JTest
+JTest also known as ‘Parasoft JTest’ is an automated Java software testing and static analysis software made by Parasoft. JTest includes functionality for Unit test-case generation and execution, static code analysis, data flow static analysis, and metrics analysis, regression testing, run-time error detection.
+
+There are also features that allow you to peer code review process automation and run-time error detection for e.g.: Race conditions, exceptions, resource and memory leaks, security attack vulnerabilities. You can find out more on their website.
+
+3. The Grinder
+‘The Grinder’ is a Java load testing framework that was designed to make sure it was easy to run and distributed test’s using many load injector machines. The Grinder can Load test on anything that has a Java API. This includes HTTP web servers, SOAP and REST web services, and application servers and including custom protocols and the test scripts are written in the powerful Jython and Clojure languages. The GUI console for The Grinder allows you to have multiple load injectors to be monitored and controlled and Automatic management of client connections and cookies, SSL, Proxy aware and Connection throttling. You can find more in depth information on The Grinders features here.
+
+It is freely available under a BSD-style open-source license. You can find out more on their website.
+
+4. TestNG
+TestNG is a testing framework designed for the Java programming language and inspired by JUnit and NUnit. TestNG was primarily designed to cover a wider range of test categories such as unit, functional, end-to-end, integration, etc. It also introduced some new functionality that make it more powerful and easier to use, such as: Annotations, Running tests in big thread pools with various policies available, code testing in a multi thread safe, flexible test configurations, data-driven testing support for parameters, and more.
+
+TestNG is supported by a variety of tools and plug-ins such as Eclipse, IDEA, Maven, etc and You can find out more on their website.
+
+5. JUnit
+JUnit is a unit testing framework designed for the Java programming language. JUnit has played an important role in the development of test-driven development frameworks. It is one of a family of unit testing frameworks which is collectively known as the xUnit that originated with SUnit.
+
+JUnit is linked as a JAR at compile-time and can be used to write repeatable tests
+
+You can find out more about JUnit on their website.
+
+6. JWalk
+JWalk is designed as a unit testing toolkit for the Java programming language. It has been designed to support a testing paradigm called Lazy Systematic Unit Testing. The JWalkTester tool performs any tests of any compiled Java class, supplied by a programmer. It is capable of testing conformance to a lazy specification, by static and dynamic analysis, and from hints by the programmer behind the code.
+
+You can find out more about JWalk on their website.
+
+7. Mockito
+Mockito is designed as a open source testing framework for Java which is available under a MIT License. Mockito allows programmers to create and test double objects (mock objects) in automated unit tests for the purpose of Test-driven Development (TDD) or Behavior Driven Development (BDD).
+
+You can find out more about Mockito on their website.
+
+8. Powermock
+PowerMock is a Java Framework for unit testing of source code and It runs as an extension of other Mocking frameworks like Mockito or EasyMock but comes with more powerful capabilities. PowerMock utilizes a custom classloader and bytecode manipulator to enable mocking of static methods, removal of static initializes, constructors, final classes and methods and private methods. It as been primarily designed to extend the existing API’s with a small number of methods and annotations to enable the extra features.
+
 Difference between jUnit and testNG?
+
+Both Testng and Junit are Testing framework used for Unit Testing. TestNG is similar to JUnit. Few more functionalities are added to it that makes TestNG more powerful than JUnit.
+
+This tutorial is mainly focused to analyse features of JUnit and TestNG. It help developers to decide which framework should be used for Unit Testing. Let's analyse similarities between TestNG and JUnit4 first.
+
+TestNG is a testing framework inspired by JUnit and NUnit.
+
+Here is the table that shows the features supported by JUnit and TestNG.
+
+JUnit4 and TestNG Feature comparison
+Both TestNG and JUnit4 looks similar, except one or two features. Let's have a comparison between the two to quickly decide, which technology is more favourable for Unit Testing.
+Annotations
+Both JUnit and TestNG uses annotations and almost all the annotations looks similar.
+
+TestNG uses @BeforeMethod ,@AfterMethod similar to @Before ,@After in JUnit4.
+
+Both TestNG and Junit4 uses @Test(timeout = 1000) for timeout .Check the table below for more details-
+
+S.N.	Description	                                                         TestNG        	                       JUnit 4
+1	Test annotation	                                                         @Test	                                   @Test
+2	Executes before the first test method is invoked in the current class	  @BeforeClass	                           @BeforeClass
+3	Executes after all the test methods in the current class	              @AfterClass	                           @AfterClass
+4	Executes before each test method	                                     @BeforeMethod	                           @Before
+5	Executes after each test method	                                         @AfterMethod	                           @After
+6	annotation to ignore a test	                                             @Test(enable=false)	                   @ignore
+7	annotation for exception	                              @Test(expectedExceptions = ArithmeticException.class)	@Test(expected = ArithmeticException.class)
+8	timeout	@Test(timeout = 1000)	@Test(timeout = 1000)
+9	Executes before all tests in the suite	@BeforeSuite	n/a
+10	Executes after all tests in the suite	@AfterSuite	n/a
+11	Executes before a test runs	@BeforeTest	n/a
+12	Executes after a test runs	@AfterTest	n/a
+13	Executes before the first test method is invoked that belongs to any of these groups is invoked	@BeforeGroups	n/a
+14	run after the last test method that belongs to any of the groups here	@AfterGroups	n/a
+
 What are the dependencies for this project?
+
+Maven projects are defined with an XML file named pom.xml. Among other things, this file gives the project's name, version, and dependencies that it has on external libraries. With the exception of the optional <packaging> element, this is the simplest possible pom.xml file necessary to build a Java project.
+
 what is dependency injection in java?
+
+A framework class, usually called the dependency container, could analyze the dependencies of this class. With this analysis it is able to create an instance of the class and inject the objects into the defined dependencies, via Java reflection. ... If dependency injection is used, a Java class can be tested in isolation.
+
 What is static binding and dynamic binding?
 
+Static binding in Java occurs during compile time while dynamic binding occurs during runtime. private , final and static methods and variables use static binding and are bonded by compiler while virtual methods are bonded during runtime based upon runtime object.
+
+Differences Between Static Binding And Dynamic Binding In Java :
+The above findings can be summarized like below.
+
+                Static Binding	                                                                            Dynamic Binding
+It is a binding that happens at compile time.	                                               It is a binding that happens at run time.
+Actual object is not used for binding.	                                                       Actual object is used for binding.
+It is also called early binding because binding happens during compilation.	                It is also called late binding because binding happens at run time.
+Method overloading is the best example of static binding.	                                    Method overriding is the best example of dynamic binding.
+Private, static and final methods show static binding. Because, they can not be overridden.	Other than private, static and final methods show dynamic binding. Because, they can be overridden.
 
 
 
