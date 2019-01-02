@@ -1,32 +1,416 @@
 Please answer the below Data Structure Questions:
 
 why do we need data structure?
-A.
+
+A.Data structure is a particular way of organizing and storing data in a computer so that it can be accessed and modified efficiently. Data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
+That said, data structures are important because they are like the behind-the-scenes workers that you, as the programmer, are directing. ... Data structures are building blocks of many things you want to do. If you know the uses for each data structure, its weaknesses and strong points then you can easily solve problems.
+The algorithms describe the way the data is to be transformed. The reason for learning about data structures is because adding structure to our data can make the algorithms much simpler, easier to maintain, and often faster.
+
 What are the various operations that can be performed on different Data Structures?
+
+A.The basic operations that are performed on data structures are as follows: Insertion: Insertion means addition of a new data element in a data structure. Deletion: Deletion means removal of a data element from a data structure if it is found.
+However, all operations on data structures are related to data and in that sense they share a similarity with database. Operations are of four types: Create, Retrieve, Update and Delete or CRUD.
+
 List out the areas in which data structures are applied extensively?
+
+The name of areas are:
+
+· Compiler Design,
+
+· Operating System,
+
+· Database Management System,
+
+· Statistical analysis package,
+
+· Numerical Analysis,
+
+· Graphics,
+
+· Artificial Intelligence,
+
+· Simulation
+
 what is an Array?
+
+Java provides a data structure, the array, which stores a fixed-size sequential collection of elements of the same type. An array is used to store a collection of data, but it is often more useful to think of an array as a collection of variables of the same type.
+
+Instead of declaring individual variables, such as number0, number1, ..., and number99, you declare one array variable such as numbers and use numbers[0], numbers[1], and ..., numbers[99] to represent individual variables.
+
 what is the difference between the Array and ArrayList?
+
+Array vs ArrayList in Java
+In Java, following are two different ways to create an array.
+
+Array: Simple fixed sized arrays that we create in Java, like below
+      int arr[] = new int[10]
+ArrayList : Dynamic sized arrays in Java that implement List interface.
+      ArrayList<Type> arrL = new ArrayList<Type>();
+      Here Type is the type of elements in ArrayList to
+      be created
+
+Differences between Array and ArrayList
+
+An array is basic functionality provided by Java. ArrayList is part of collection framework in Java. Therefore array members are accessed using [], while ArrayList has a set of methods to access elements and modify them.
+Array is a fixed size data structure while ArrayList is not. One need not to mention the size of Arraylist while creating its object. Even if we specify some initial capacity, we can add more elements.
+Array can contain both primitive data types as well as objects of a class depending on the definition of the array. However, ArrayList only supports object entries, not the primitive data types.
+When we do arraylist.add(1); : it converts the primitive int data type into an Integer object.
+
+Since ArrayList can’t be created for primitive data types, members of ArrayList are always references to objects at different memory locations (See this for details). Therefore in ArrayList, the actual objects are never stored at contiguous locations. References of the actual objects are stored at contiguous locations.
+In array, it depends whether the arrays is of primitive type or object type. In case of primitive types, actual values are contiguous locations, but in case of objects, allocation is similar to ArrayList.
+
 what is LinkedList?
+
+Java LinkedList class uses a doubly linked list to store the elements. It provides a linked-list data structure. It inherits the AbstractList class and implements List and Deque interfaces. The important points about Java LinkedList are: Java LinkedList class can contain duplicate elements.
+
+A linked list is a sequence of data structures, which are connected together via links.
+
+Linked List is a sequence of links which contains items. Each link contains a connection to another link. Linked list is the second most-used data structure after array. Following are the important terms to understand the concept of Linked List.
+
+Link − Each link of a linked list can store a data called an element.
+
+Next − Each link of a linked list contains a link to the next link called Next.
+
+LinkedList − A Linked List contains the connection link to the first link called First.
+
+Linked List Representation
+Linked list can be visualized as a chain of nodes, where every node points to the next node.
+
+Linked List
+As per the above illustration, following are the important points to be considered.
+
+Linked List contains a link element called first.
+
+Each link carries a data field(s) and a link field called next.
+
+Each link is linked with its next link using its next link.
+
+Last link carries a link as null to mark the end of the list.
+
+Types of Linked List
+Following are the various types of linked list.
+
+Simple Linked List − Item navigation is forward only.
+
+Doubly Linked List − Items can be navigated forward and backward.
+
+Circular Linked List − Last item contains link of the first element as next and the first element has a link to the last element as previous.
+
+Basic Operations
+Following are the basic operations supported by a list.
+
+Insertion − Adds an element at the beginning of the list.
+
+Deletion − Deletes an element at the beginning of the list.
+
+Display − Displays the complete list.
+
+Search − Searches an element using the given key.
+
+Delete − Deletes an element using the given key.
+
+Insertion Operation
+Adding a new node in linked list is a more than one step activity. We shall learn this with diagrams here. First, create a node using the same structure and find the location where it has to be inserted.
+
+Linked List Insertion
+Imagine that we are inserting a node B (NewNode), between A (LeftNode) and C (RightNode). Then point B.next to C −
+
+NewNode.next −> RightNode;
+It should look like this −
+
+Linked List Insertion
+Now, the next node at the left should point to the new node.
+
+LeftNode.next −> NewNode;
+Linked List Insertion
+This will put the new node in the middle of the two. The new list should look like this −
+
+Linked List Insertion
+Similar steps should be taken if the node is being inserted at the beginning of the list. While inserting it at the end, the second last node of the list should point to the new node and the new node will point to NULL.
+
+Deletion Operation
+Deletion is also a more than one step process. We shall learn with pictorial representation. First, locate the target node to be removed, by using searching algorithms.
+
+Linked List Deletion
+The left (previous) node of the target node now should point to the next node of the target node −
+
+LeftNode.next −> TargetNode.next;
+Linked List Deletion
+This will remove the link that was pointing to the target node. Now, using the following code, we will remove what the target node is pointing at.
+
+TargetNode.next −> NULL;
+Linked List Deletion
+We need to use the deleted node. We can keep that in memory otherwise we can simply deallocate memory and wipe off the target node completely.
+
+Linked List Deletion
+Reverse Operation
+This operation is a thorough one. We need to make the last node to be pointed by the head node and reverse the whole linked list.
+
+Linked List Reverse Operation
+First, we traverse to the end of the list. It should be pointing to NULL. Now, we shall make it point to its previous node −
+
+Linked List Reverse Operation
+We have to make sure that the last node is not the lost node. So we'll have some temp node, which looks like the head node pointing to the last node. Now, we shall make all left side nodes point to their previous nodes one by one.
+
+Linked List Reverse Operation
+Except the node (first node) pointed by the head node, all nodes should point to their predecessor, making them their new successor. The first node will point to NULL.
+
+Linked List Reverse Operation
+We'll make the head node point to the new first node by using the temp node.
+
+Linked List Reverse Operation
+The linked list is now reversed.
+
 How is an Array different from Linked List?
-what is queue?
+
+Difference between Array and Linked List
+Both Linked List and Array are used to store linear data of similar type, but an array consumes contiguous memory locations allocated at compile time, i.e. at the time of declaration of array, while for a linked list, memory is assigned as and when data is added to it, which means at runtime.
+
+This is the basic and the most important difference between a linked list and an array. In the section below, we will discuss this in details along with highlighting other differences.
+
+Linked List vs. Array
+Array is a datatype which is widely implemented as a default type, in almost all the modern programming languages, and is used to store data of similar type.
+
+But there are many usecases, like the one where we don't know the quantity of data to be stored, for which advanced data structures are required, and one such data structure is linked list.
+
+Let's understand how array is different from Linked list.
+
+ARRAY	vs LINKED LIST
+Array is a collection of elements of similar data type.	Linked List is an ordered collection of elements of same type, which are connected to each other using pointers.
+Array supports Random Access, which means elements can be accessed directly using their index, like arr[0] for 1st element, arr[6] for 7th element etc.
+
+Hence, accessing elements in an array is fast with a constant time complexity of O(1).
+
+Linked List supports Sequential Access, which means to access any element/node in a linked list, we have to sequentially traverse the complete linked list, upto that element.
+
+To access nth element of a linked list, time complexity is O(n).
+
+In an array, elements are stored in contiguous memory location or consecutive manner in the memory.
+
+In a linked list, new elements can be stored anywhere in the memory.
+
+Address of the memory location allocated to the new element is stored in the previous node of linked list, hence formaing a link between the two nodes/elements.
+
+In array, Insertion and Deletion operation takes more time, as the memory locations are consecutive and fixed.
+In case of linked list, a new element is stored at the first free and available memory location, with only a single overhead step of storing the address of memory location in the previous node of linked list.
+
+Insertion and Deletion operations are fast in linked list.
+
+Memory is allocated as soon as the array is declared, at compile time. It's also known as Static Memory Allocation.	Memory is allocated at runtime, as and when a new node is added. It's also known as Dynamic Memory Allocation.
+In array, each element is independent and can be accessed using it's index value.	In case of a linked list, each node/element points to the next, previous, or maybe both nodes.
+Array can single dimensional, two dimensional or multidimensional	Linked list can be Linear(Singly), Doubly or Circular linked list.
+Size of the array must be specified at time of array decalaration.	Size of a Linked list is variable. It grows at runtime, as more nodes are added to it.
+Array gets memory allocated in the Stack section.	Whereas, linked list gets memory allocated in Heap section.
+Below we have a pictorial representation showing how consecutive memory locations are allocated for array, while in case of linked list random memory locations are assigned to nodes, but each node is connected to its next node using pointer.
+
+What is queue?
+
+Java Queue is an interface available in java.util package and extends java.util.Collection interface. Just like Java List, Java Queue is a collection of ordered elements (Or objects) but it performs insert and remove operations differently. We can use Queue to store elements before processing those elements.
+
+Here are some of the important points about Java Queue:
+
+java.util.Queue interface is a subtype of java.util.Collection interface.
+Just like a real-world queue (for instance, in a bank or at ATM), Queue inserts elements at the end of the queue and removes from the beginning of the queue.
+Java Queue represents an ordered list of elements.
+Java Queue follows FIFO order to insert and remove it’s elements. FIFO stands for First In First Out.
+Java Queue supports all methods of Collection interface.
+Most frequently used Queue implementations are LinkedList, ArrayBlockingQueue and PriorityQueue.
+BlockingQueues do not accept null elements. If we perform any null related operation, it throws NullPointerException.
+BlockingQueues are used to implement Producer/Consumer based applications.
+BlockingQueues are thread-safe.
+All Queues which are available in java.util package are Unbounded Queues and Queues which are available in java.util.concurrent package are Bounded Queues.
+All Deques are not thread-safe.
+ConcurrentLinkedQueue is an unbounded thread-safe Queue based on linked nodes.
+All Queues supports insertion at the tail of the queue and removal at the head of the queue, except Deques.
+Deques are queues but they support element insertion and removal at both ends.
+
 what is stack?
+
+Stack is a linear data structure which follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+
+There are many real-life examples of a stack. Consider an example of plates stacked over one another in the canteen. The plate which is at the top is the first one to be removed, i.e. the plate which has been placed at the bottommost position remains in the stack for the longest period of time. So, it can be simply seen to follow LIFO(Last In First Out)/FILO(First In Last Out) order.
+
+
 what is FIFO and LIFO?
+
+A queue is sometimes referred to as a First-In-First-Out (FIFO) or Last-In-Last-Out (LILO) structure. Elements subsequently stored cannot be retrieved until the first element (usually referred to as the 'front' element) has been retrieved. STACK is a LIFO (last in, first out) list.
+
+FIFO vs LIFO approach in Programming
+Prerequisite – FIFO (First-In-First-Out) approach in Programming
+FIFO is an abbreviation for first in, first out. It is a method for handling data structures where the first element is processed first and the newest element is processed last.
+
+Real life example:
+
+
+
+
+
+
+
+LIFO is an abbreviation for Last in, first out is same as fist in, last out (FILO). It is a method for handling data structures where the last element is processed first and the first element is processed last.
+
+Real life example:
+
+
+
+Below is a comparison of FIFO vs. LIFO:
+
+FIFO vs LIFO
+It stands for First-In-First-Out approach in programming.	It stands for Last-In-First-Out approach in programming.
+In this, the new element is inserted below the existing element, So that the oldest element can be at the top and taken out first.	In this, the new element is inserted above the existing element, So that the newest element can be at the top and taken out first.
+Therefore, the First element to be entered in this approach, gets out First.	Therefore, the First element to be entered in this approach, gets out Last.
+In computing, FIFO approach is used as an operating system algorithm, which gives every process CPU time in the order they arrive.	In computing, LIFO approach is used as a queuing theory that refers to the way items are stored in types of data structures.
+The data structure that implements FIFO is Queue.	The data structure that implements FIFO is Stack.
+
 what is the order of complexity?
+
+Lot of students get confused while understanding the concept of time-complexity, but in this article we will explain it with a very simple example:
+
+Imagine a classroom of 100 students in which you gave your pen to one person. Now, you want that pen. Here are some ways to find the pen and what the O order is.
+
+O(n2): You go and ask the first person of the class, if he has the pen. Also, you ask this person about other 99 people in the classroom if they have that pen & So on,
+This is what we call O(n2).
+
+O(n): Going and asking each student individually is O(N).
+
+O(log n): Now I divide the class in two groups, then ask: “Is it on the left side, or the right side of the classroom?” Then I take that group and divide it into two and ask again, and so on. Repeat the process till you are left with one student who has your pen. This is what you mean by O(log n).
+I might need to do the O(n2) search if only one student knows on which student the pen is hidden. I’d use the O(n) if one student had the pen and only they knew it. I’d use the O(log n) search if all the students knew, but would only tell me if I guessed the right side.
+
 what is the best case to search an element from an array?
+
+In computer science, best, worst, and average cases of a given algorithm express what the resource usage is at least, at most and on average, respectively. Usually the resource being considered is running time, i.e. time complexity, but it could also be memory or other resource. Best case is the function which performs the minimum number of steps on input data of n elements. Worst case is the function which performs the maximum number of steps on input data of size n. Average case is the function which performs an average number of steps on input data of n elements.
+
+So the idea here is that you've got to walk the array from front to end because it is unsorted. That means you're looking at O(n) - a linear traversal of the elements. Regardless of whether the one you are searching for is at position 0, position 8, or position n-1, you've got to walk the array to find it.
+
+Now, if there are possibly duplicates in the array, the only difference is that you may find more than one instance of the value. If you are looking for all of them or just the first one, it is still a O(n) situation. The duplicates don't change the complexity.
+
+Best case - you find it (assuming you only need to find one) on the first comparison.
+
+Worst case - there are no duplicates for the given value and it is the last one you check - the nth comparison.
+
+If you had to find ALL of the duplicates, it is always going to be n comparisons, because you've got to visit each element in the unsorted array.
+
+
 what is the worst case to search an element from an array?
+
+It's quite intuitive actually. Think about it, if you have a bag of keys and your are looking for one particular key (assuming all are different from each other), what would you do, pick up each key one by one and check….
+
+That's the same algorithm that will be used in this case for searching an element. So in the worst case, if the element/ key you were looking for turns out to be the very last key in the bag then unfortunately you will have to look at all the keys. If there were in total 'n' keys then you would have to do ’n’ searching operations. Hence the time complexity in this case will be O(n).
+
+However, if the array were sorted, then the time complexity would be O(log n) coz here your won't comparing all the elements.
+
 what is tree in data structure?
+
+A tree is a nonlinear data structure, compared to arrays, linked lists, stacks and queues which are linear data structures. A tree can be empty with no nodes or a tree is a structure consisting of one node called the root and zero or one or more subtrees.
+
 what is graph in data structure?
+
+A tree is a nonlinear data structure, compared to arrays, linked lists, stacks and queues which are linear data structures. A tree can be empty with no nodes or a tree is a structure consisting of one node called the root and zero or one or more subtrees.
+
 what is the difference between the HashTable and HashMap?
+
+There are several differences between HashMap and Hashtable in Java:
+
+Hashtable is synchronized, whereas HashMap is not. This makes HashMap better for non-threaded applications, as unsynchronized Objects typically perform better than synchronized ones.
+
+Hashtable does not allow null keys or values.  HashMap allows one null key and any number of null values.
+
+One of HashMap's subclasses is LinkedHashMap, so in the event that you'd want predictable iteration order (which is insertion order by default), you could easily swap out the HashMap for a  LinkedHashMap. This wouldn't be as easy if you were using Hashtable.
+
 What are the major data structures used in the following areas : RDBMS, Network data model and Hierarchical data model.
+
+The major data structures used are as follows:
+
+· RDBMS – Array (i.e. Array of structures)
+
+· Network data model – Graph
+
+· Hierarchical data model – Trees
+
 How HashMap works in java?
+
+HashMap is a part of Java’s collection since Java 1.2. It provides the basic implementation of Map interface of Java. It stores the data in (Key, Value) pairs. To access a value one must know its key. HashMap is known as HashMap because it uses a technique called Hashing. Hashing is a technique of converting a large String to small String that represents same String. A shorter value helps in indexing and faster searches. HashSet also uses HashMap internally. It internally uses a link list to store key-value pairs already explained in HashSet in detail and further articles.
+Few important features of HashMap are:
+
+HashMap is a part of java.util package.
+HashMap extends an abstract class AbstractMap which also provides an incomplete implementation of Map interface.
+It also implements Cloneable and Serializable interface. K and V in the above definition represent Key and Value respectively.
+HashMap doesn’t allow duplicate keys but allows duplicate values. That means A single key can’t contain more than 1 value but more than 1 key can contain a single value.
+HashMap allows null key also but only once and multiple null values.
+This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time. It is roughly similar to HashTable but is unsynchronized.
+
 What is ArrayIndexOutOfBoundsException in java? When it occurs?
+
+ArrayIndexOutOfBoundsException means you are trying to access a array index that doesn't exist. The problem is that your array is of size one.However, you are going through that loop six times. You can either make n equal to one, or increase the size of your array.
+An object of this class is thrown when code accesses an array with an illegal index. This happens when an index is negative or greater than or equal to the length of the array being indexed.
+
 What are the different ways of copying an array into another array?
+
+There are mainly four different ways to copy all elements of one array into another array in Java.
+
+1. Manually
+2. Arrays.copyOf()
+3. System.arraycopy()
+4. Object.clone()
+
 What is difference between an array and a linked list?
+
+Basically, an array is a set of similar data objects stored in sequential memory locations under a common heading or a variable name. While a linked list is a data structure which contains a sequence of the elements where each element is linked to its next element.
+
 What is DFS and BFS?
+
+The breadth first search (BFS) and the depth first search (DFS) are the two algorithms used for traversing and searching a node in a graph. They can also be used to find out whether a node is reachable from a given node or not.
+
 What is Recursion?
+
+Recursion is a basic programming technique you can use in Java, in which a method calls itself to solve some problem. A method that uses this technique is recursive. Many programming problems can be solved only by recursion, and some problems that can be solved by other techniques are better solved by recursion.
+
 What are linear and non linear data Structures?
+
+Difference between Linear and Non Linear Data Structure
+Here you will learn about difference between linear and non linear data structure.
+
+Data structures are basically a way of storing and logically implementing the data elements. These elements need to be stored in a way which makes them orderly and organized. Apart from the primitive data structures which include the int, char, float, double etc., the non primitive data structures are also important and definitely play a crucial role for storing and retrieving the data structures. The non primitive data structures can broadly be classified into two types:
+
+Linear Data Structure
+Non-Linear Data Structure
+Although, both are non-primitive data types, yet they hold a majority of differences between them, these differences can better be understood by reading the following points.
+
+Difference between Linear and Non Linear Data Structure
+
+In the linear data structure, the data is organized in a linear order in which elements are linked one after the other. ... Conversely, non-linear data structure involves multiple levels. Examples of the linear data structure are array, queue, stack, linked list, etc.
+Difference between Linear and Non Linear Data Structure
+Linear Data Structure	Non Linear Data Structure
+The elements are inserted adjacent to each other and can also be retrieved similarly.
+
+Elements which are stored in a non linear data structure have certain relationship among them while being stored or retrieved. There is a certain definite pattern which always govern the addition of a new element to the structure
+Data elements are easy to be retrieved as they can be just accessed in one run.	Data elements are not easy to be retrieved or stored as they follow a strict relationship among the various elements.
+The Linear Data Structures are comparatively simpler and provide a certain ease of working with.	The Non Linear Data Structures are complex data structures which can prove to be tricky to an extent.
+These do not provide us with efficient memory utilization.	Efficient memory utilization is experienced while working with the non linear data structures.
+Examples: Linked List, Stack, Queue etc.	Examples: Trees, graphs etc.
+
 What is Big-(O)-notation?
+
+Big O notation is used in Computer Science to describe the performance or complexity of an algorithm. Big O specifically describes the worst-case scenario, and can be used to describe the execution time required or the space used (e.g. in memory or on disk) by an algorithm.
+
 Outlined different kind of sorting algorithm with time complexity?
+
+perm_identity
+Time Complexities of all Sorting Algorithms
+Following is a quick revision sheet that you may refer at last minute
+
+
+
+Algorithm	Time Complexity
+  Best	Average	Worst
+Selection Sort	Ω(n^2)	θ(n^2)	O(n^2)
+Bubble Sort	Ω(n)	θ(n^2)	O(n^2)
+Insertion Sort	Ω(n)	θ(n^2)	O(n^2)
+Heap Sort	Ω(n log(n))	θ(n log(n))	O(n log(n))
+Quick Sort	Ω(n log(n))	θ(n log(n))	O(n^2)
+Merge Sort	Ω(n log(n))	θ(n log(n))	O(n log(n))
+Bucket Sort	Ω(n+k)	θ(n+k)	O(n^2)
+Radix Sort	Ω(nk)	θ(nk)	O(nk)
 
 Draw a table with time complexity in which it will summarize all the data structure feature's advantages and disadvantages.
   a)In terms of Accessing element.

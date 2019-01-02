@@ -1,8 +1,13 @@
 Please answer the below Data Structure Questions:
 
 why do we need data structure?
-A.
+A.Data structure is a particular way of organizing and storing data in a computer so that it can be accessed and modified efficiently. Data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
+That said, data structures are important because they are like the behind-the-scenes workers that you, as the programmer, are directing. ... Data structures are building blocks of many things you want to do. If you know the uses for each data structure, its weaknesses and strong points then you can easily solve problems.
+The algorithms describe the way the data is to be transformed. The reason for learning about data structures is because adding structure to our data can make the algorithms much simpler, easier to maintain, and often faster.
+
 What are the various operations that can be performed on different Data Structures?
+A.
+
 List out the areas in which data structures are applied extensively?
 what is an Array?
 what is the difference between the Array and ArrayList?
